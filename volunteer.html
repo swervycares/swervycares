@@ -161,18 +161,20 @@
       const checkboxes = form.querySelectorAll('input[name="volunteer_opportunities"]:checked');
       checkboxes.forEach(checkbox => selectedOpportunities.push(checkbox.value));
 
+      console.log('Selected Opportunities:', selectedOpportunities);
+
       const formData = {
         sheet1: {
-          name: form.volunteer_name.value,
+          Name: form.volunteer_name.value,
           email: form.volunteer_email.value,
-          phone: form.volunteer_phone.value,
-          age: form.volunteer_age.value,
-          location: form.volunteer_location.value,
+          Phone: form.volunteer_phone.value,
+          Age: form.volunteer_age.value,
+          Location: form.volunteer_location.value,
           opportunities: selectedOpportunities.join(', '),
-          time: form.volunteer_time.value,
-          skills: form.volunteer_skills.value,
-          motivation: form.volunteer_motivation.value,
-          comments: form.volunteer_comments.value
+          Time: form.volunteer_time.value,
+          Skills: form.volunteer_skills.value,
+          Motivation: form.volunteer_motivation.value,
+          Comments: form.volunteer_comments.value
         }
       };
 
