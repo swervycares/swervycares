@@ -162,7 +162,7 @@
       checkboxes.forEach(checkbox => selectedOpportunities.push(checkbox.value));
 
       const formData = {
-        sheet1: { // Must match Sheety key exactly
+        sheet1: {
           name: form.volunteer_name.value,
           email: form.volunteer_email.value,
           phone: form.volunteer_phone.value,
@@ -181,15 +181,15 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       })
-      .then(response => response.json())
-      .then(result => {
-        form.style.display = 'none';
-        document.getElementById('volunteer-success-message').classList.remove('hidden');
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        alert('There was an error submitting your application. Please try again.');
-      });
+        .then(response => response.json())
+        .then(result => {
+          form.style.display = 'none';
+          document.getElementById('volunteer-success-message').classList.remove('hidden');
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('There was an error submitting your application. Please try again.');
+        });
     }
 
     window.onload = function () {
