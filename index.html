@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <header>
     <h1>Swervy Cares</h1>
@@ -17,7 +19,6 @@
       <a href="volunteer.html">Volunteer</a>
       <a href="donation.html">Donate</a>
       <a href="share.html">Share Our Story</a>
-      <a href="#admin" id="adminLink" style="display: none;">Admin</a>
     </nav>
   </header>
 
@@ -116,34 +117,6 @@
     </div>
   </section>
 
-  <section class="section" id="impact">
-    <h2 style="text-align: center;">Our Impact</h2>
-    <p style="text-align: center;">Together, we're building confidence one kit at a time.</p>
-    <div class="impact-metrics">
-      <div class="metric-card"><strong>0</strong><br />Kits Delivered</div>
-      <div class="metric-card"><strong>0</strong><br />Girls Empowered</div>
-      <div class="metric-card"><strong>1</strong><br />Communities Reached</div>
-    </div>
-    <div class="card">
-      <h3 style="text-align: center;">Our 2025 Goal</h3>
-      <p>Progress toward 500 kits</p>
-      <div class="progress">
-        <div class="progress-bar" style="width: 0%;"></div>
-      </div>
-      <p style="text-align: center;">We're on a mission to donate 500+ self-care kits this year. Join us by volunteering, donating, or sharing our mission!</p>
-      <div style="text-align: center;">
-        <button onclick="window.location.href='volunteer.html'">Volunteer With Us</button>
-        <button class="btn-secondary" onclick="window.location.href='donation.html'">Make a Donation</button>
-        <button class="btn-tertiary" onclick="window.location.href='share.html'">Share Our Story</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="admin" style="display: none;">
-    <h2>Admin Dashboard</h2>
-    <p>Admin features go here (in development).</p>
-  </section>
-
   <footer>
     <div class="contact-info">
       <h3>Contact Us</h3>
@@ -158,12 +131,10 @@
   </footer>
 
   <script>
-    // Reset form on page load
-    window.onload = function() {
+    window.onload = function () {
       document.getElementById('kitRequestForm').reset();
     };
 
-    // Handle form submission
     function handleFormSubmission(event) {
       event.preventDefault();
 
@@ -182,21 +153,24 @@
         confidence: form.user_confidence.value
       };
 
-      // Submit to Google Apps Script
-      fetch('https://script.google.com/macros/s/AKfycbzXPCtXIZvAYuqVLZu1uCeiPaeyClzdhStpRqVaG9hTeMS0EmTSI9QhFsMJL7Ppo6yHSA/exec', {
+      fetch('https://api.sheety.co/b8ee76e1f97b11355b5b90a8e37eab16/swervy/kitRequests', {
         method: 'POST',
-        body: JSON.stringify(formData)
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ kitRequest: formData })
       })
-      .then(response => response.text())
-      .then(result => {
-        document.querySelector('#kitRequestForm').style.display = 'none';
-        document.querySelector('#form-submitted-message').classList.remove('hidden');
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        alert('There was an error submitting your request. Please try again.');
-      });
+        .then(response => response.json())
+        .then(result => {
+          form.style.display = 'none';
+          document.getElementById('form-submitted-message').classList.remove('hidden');
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('There was an error submitting your request. Please try again.');
+        });
     }
   </script>
 </body>
+
 </html>
