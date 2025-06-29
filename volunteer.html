@@ -160,6 +160,7 @@
       checkboxes.forEach(checkbox => selectedOpportunities.push(checkbox.value));
 
       const formData = {
+        type: 'volunteer_application',
         name: form.volunteer_name.value,
         email: form.volunteer_email.value,
         phone: form.volunteer_phone.value,
@@ -172,7 +173,7 @@
         comments: form.volunteer_comments.value
       };
 
-      fetch('https://script.google.com/macros/s/AKfycbwtNAyVydpdXbBTQeXxbd1-y-Bb7JH1QtETr5ShiZvBLgrzjHPGAE2YP4gFedcr2I9t/exec', {  // Replace this with your script URL
+      fetch('https://script.google.com/macros/s/AKfycbzXPCtXIZvAYuqVLZu1uCeiPaeyClzdhStpRqVaG9hTeMS0EmTSI9QhFsMJL7Ppo6yHSA/exec', {
         method: 'POST',
         body: JSON.stringify(formData)
       })
