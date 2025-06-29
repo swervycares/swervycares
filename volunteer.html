@@ -244,6 +244,7 @@
 
       fetch('https://script.google.com/macros/s/AKfycbzR5R1p-YVBh_LbeT5Q6R36aBe3M3IwRiZOEHK1mxjf9ZZcg62mC3dUF9C_NMipuhBL/exec', {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       })
       .then(response => response.text())
