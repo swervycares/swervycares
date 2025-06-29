@@ -224,7 +224,6 @@
       
       const form = document.getElementById('volunteerForm');
       
-      // Get selected volunteer opportunities
       const selectedOpportunities = [];
       const checkboxes = form.querySelectorAll('input[name="volunteer_opportunities"]:checked');
       checkboxes.forEach(checkbox => selectedOpportunities.push(checkbox.value));
@@ -243,18 +242,7 @@
         type: 'volunteer_application'
       };
 
-      // In a real application, this would submit to a server
-      // For now, we'll simulate the submission
-      console.log('Volunteer application submitted:', formData);
-      
-      // Show success message
-      form.style.display = 'none';
-      document.getElementById('volunteer-success-message').classList.remove('hidden');
-      
-      // Optional: Submit to the same Google Apps Script endpoint
-      // You would modify the server-side script to handle different form types
-      /*
-      fetch('https://script.google.com/macros/s/AKfycbzXPCtXIZvAYuqVLZu1uCeiPaeyClzdhStpRqVaG9hTeMS0EmTSI9QhFsMJL7Ppo6yHSA/exec', {
+      fetch('https://script.google.com/macros/s/AKfycbzR5R1p-YVBh_LbeT5Q6R36aBe3M3IwRiZOEHK1mxjf9ZZcg62mC3dUF9C_NMipuhBL/exec', {
         method: 'POST',
         body: JSON.stringify(formData)
       })
@@ -267,10 +255,8 @@
         console.error('Error:', error);
         alert('There was an error submitting your application. Please try again.');
       });
-      */
     }
     
-    // Reset form on page load
     window.onload = function() {
       document.getElementById('volunteerForm').reset();
     };
